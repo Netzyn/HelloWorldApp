@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity implements HelloWorldClientI
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        api = new VoiceInterface(this, this.getIntent());
+        api = VoiceInterface.startVoiceInterface(this, this.getIntent());
     }
 
     void ShowToast(String msg) {
@@ -22,6 +22,12 @@ public class MainActivity extends AppCompatActivity implements HelloWorldClientI
                 msg,
                 Toast.LENGTH_LONG);
         toast.show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        api.onDestroy();
     }
 
     public void HelloWorld(String sessionId) {

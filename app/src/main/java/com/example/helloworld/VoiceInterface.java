@@ -13,6 +13,22 @@ public class VoiceInterface implements SaApiInterface {
     HelloWorldClientInterface client;
     private SaApi api = null;
 
+    static private VoiceInterface Instance = null;
+    static VoiceInterface startVoiceInterface(HelloWorldClientInterface client, Intent intent) {
+        if (Instance == null) {
+            Instance = new VoiceInterface(client, intent);
+        }
+        else
+        {
+            Instance.client = client;
+        }
+        return Instance;
+    }
+
+    public void onDestroy() {
+        client = null;
+    }
+
     VoiceInterface(HelloWorldClientInterface client, Intent intent)
     {
         this.client = client;
@@ -21,6 +37,11 @@ public class VoiceInterface implements SaApiInterface {
     public void SaEventVoice(String user, String device, String app, final String sessionId, String intent,
                       final String parm1, final String parm2, final String parm3, final String parm4, final String parm5)
     {
+        if (client == null) {
+            api.SaVoiceResponse(sessionId, "tell", "Application is not ready.");
+            return;
+        }
+
         if (intent.compareToIgnoreCase("hello") == 0) {
             client.HelloWorld(sessionId);
         }
