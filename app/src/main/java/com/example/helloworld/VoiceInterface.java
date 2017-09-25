@@ -32,7 +32,7 @@ import com.netzyn.api.SaApiInterface;
         VoiceInterface(HelloWorldClientInterface client, Intent intent)
         {
             this.client = client;
-            api = new SaApi(AppName, intent, this);
+            api = new SaApi(intent, this);
         }
         public void SaEventVoice(String user, String device, String app, final String sessionId, String intent,
                           final String parm1, final String parm2, final String parm3, final String parm4, final String parm5)
