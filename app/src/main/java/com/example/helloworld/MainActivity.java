@@ -38,6 +38,11 @@ public class MainActivity extends AppCompatActivity implements HelloWorldClientI
             }
         });
 
-        api.SendResponse(sessionId, "REPLACE WITH YOUR MESSAGE");
+        api.SendResponse(sessionId, "REPLACE WITH YOUR MESSAGE", false);
+    }
+
+    @Override
+    public String GetLoggingTag() {
+        return null;
     }
 }

@@ -7,4 +7,5 @@ package com.example.helloworld;
 public interface HelloWorldClientInterface {
 
     void HelloWorld(String sessionId);
+    String GetLoggingTag();
 }
